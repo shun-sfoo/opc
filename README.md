@@ -6,6 +6,6 @@ inspired by [ooxml-rs](https://github.com/zitsen/ooxml-rs)
 
 `cargo test -- --nocapture`
 
-# ooxml 数据结构 URL 图
+#ooxml 数据结构 UML 图
 
 ![图片](./resources/ooxml.svg)
