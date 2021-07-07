@@ -333,6 +333,7 @@ impl<'a> RowsIter<'a> {
     }
 }
 
+#[derive(Debug)]
 pub struct Cell<'a> {
     sheet: &'a Worksheet,
     row: usize,

@@ -6,14 +6,14 @@ mod tests {
     #[test]
     #[ignore = "passed"]
     fn test_open_package() {
-        let path = "examples/simple-spreadsheet/data-image-demo.xlsx";
+        let path = "resources/files/e1.xlsx";
         let package = OpenXmlPackage::open(path).unwrap();
         println!("{:?}", package);
     }
 
     #[test]
     fn test_document_open() {
-        let path = "examples/simple-spreadsheet/data-image-demo.xlsx";
+        let path = "resources/files/e1.xlsx";
         let document = SpreadsheetDocument::open(path).unwrap();
         let workbook = document.get_workbook();
 

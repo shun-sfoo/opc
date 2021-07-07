@@ -1,7 +1,7 @@
 use crate::packaging::namespace::Namespaces;
 
 use crate::document::sheet::cell::CellType;
-use crate::packaging::element::OpenXmlDeserializeDefault;
+use crate::packaging::element::{OpenXmlDeserializeDefault, OpenXmlDeserialized};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
@@ -151,6 +151,7 @@ pub struct SheetColHeader {
 #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", rename = "sheetData")]
 pub struct SheetData {
+    #[serde(rename = "row")]
     pub rows: Option<Vec<SheetRow>>,
 }
 
@@ -158,9 +159,11 @@ pub struct SheetData {
 #[serde(rename = "row")]
 pub struct SheetRow {
     pub r: usize,
+    #[serde(rename = "customHeight")]
     pub custom_height: Option<bool>,
     pub ht: Option<f64>,
     pub spans: Option<String>,
+    #[serde(rename = "c")]
     pub cols: Vec<SheetCol>,
 }
 
@@ -241,3 +244,15 @@ pub struct PageMargins {
 #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", rename = "headerFooter")]
 pub struct HeaderFooter {}
+
+#[test]
+fn cell() {
+    let xml = r#"
+    <c r="B2" s="1" t="inlineStr">
+        <is>
+            <t>&#21776;&#33564;</t>
+        </is>
+    </c>"#;
+    let c: SheetCol = quick_xml::de::from_str(xml).unwrap();
+    println!("{:?}", c);
+}
