@@ -13,7 +13,7 @@ mod tests {
 
     #[test]
     fn test_document_open() {
-        let path = "resources/files/e1.xlsx";
+        let path = "resources/files/excel-demo/demo.xlsx";
         let document = SpreadsheetDocument::open(path).unwrap();
         let workbook = document.get_workbook();
 

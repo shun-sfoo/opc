@@ -45,6 +45,8 @@ impl OpenXmlPackage {
                 continue;
             }
 
+            println!("file {} is {:?} ", i, file.name().to_string());
+
             let filename = file.name().to_string();
             if filename == CONTENT_TYPES_FILE {
                 content_types_id = Some(i);
